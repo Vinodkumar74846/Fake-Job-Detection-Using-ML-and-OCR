@@ -1,123 +1,172 @@
-Fake Job Detection using OCR and Flask
+# 🚨 Fake Job Detection System using OCR & Flask
 
-This project is a Flask web application that detects whether a job posting is Real or Fake.
-Users can either paste job descriptions or upload screenshots of job posts.
-The system extracts text using OCR (Tesseract) and checks for suspicious keywords commonly used in job scams.
+## 📌 Project Overview
+The **Fake Job Detection System** is a Flask-based web application that helps users identify whether a job posting is **Real ✅ or Fake ❌**.
 
-Features
+Users can either:
+- 📄 **Paste a job description**
+- 🖼 **Upload a screenshot of a job post**
 
-User Login and Signup system
+The system extracts text using **Tesseract OCR** and analyzes the content to detect **suspicious patterns commonly found in job scams**.
 
-Upload job posting screenshot
+---
 
-OCR text extraction using Tesseract
+# ✨ Features
 
-Paste job description text
+🔐 **User Authentication**
+- Login and Signup system
 
-Detect Fake or Real job postings
+🖼 **Image Upload**
+- Upload job post screenshots
 
-Shows reasons for fake job detection
+🔎 **OCR Text Extraction**
+- Extracts text from images using **Tesseract OCR**
 
-Session history of previous predictions
+📄 **Text Input**
+- Users can paste job descriptions directly
 
-Simple Flask web interface
+🤖 **Fake Job Detection**
+- Detects suspicious keywords used in scams
 
-Technologies Used
+📊 **Prediction Result**
+- Shows whether the job is **Fake or Real**
 
-Python
+📜 **Detection Reasons**
+- Displays the reasons for classification
 
-Flask
+📚 **History Tracking**
+- Stores previous predictions in session history
 
-Tesseract OCR
+---
 
-PIL (Python Imaging Library)
+# 🛠 Technologies Used
 
-HTML / CSS
+| Technology | Purpose |
+|------------|---------|
+| 🐍 Python | Backend Development |
+| 🌐 Flask | Web Framework |
+| 🔎 Tesseract OCR | Text Extraction from Images |
+| 🖼 PIL (Pillow) | Image Processing |
+| 📄 HTML / CSS | Frontend Interface |
+| 📂 JSON | User Data Storage |
 
-Regular Expressions
+---
 
-JSON (for storing users)
+# 📂 Project Structure
 
-Project Structure
-project-folder
+```
+fake-job-detection
 │
 ├── app.py
 ├── users.json
+├── README.md
+│
 ├── uploads/
 │
-├── templates/
-│   ├── login.html
-│   ├── signup.html
-│   ├── upload.html
-│   ├── result.html
-│   ├── history.html
-│   └── about.html
-│
-└── README.md
-Installation
-1 Install Python libraries
+└── templates/
+    ├── login.html
+    ├── signup.html
+    ├── upload.html
+    ├── result.html
+    ├── history.html
+    └── about.html
+```
+
+---
+
+# ⚙️ Installation Guide
+
+## 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/fake-job-detection.git
+```
+
+```
+cd fake-job-detection
+```
+
+---
+
+## 2️⃣ Install Required Libraries
+
+```bash
 pip install flask pillow pytesseract
-2 Install Tesseract OCR
+```
 
-Download and install:
+---
 
-https://github.com/tesseract-ocr/tesseract
+## 3️⃣ Install Tesseract OCR
 
-After installation, set the path in the code:
+Download and install Tesseract:
 
+🔗 https://github.com/tesseract-ocr/tesseract
+
+After installation, update the path in the code:
+
+```python
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-3 Run the application
+```
+
+---
+
+## 4️⃣ Run the Application
+
+```bash
 python app.py
+```
 
-Then open:
+Then open your browser:
 
+```
 http://127.0.0.1:5001
-How It Works
+```
 
-User logs into the system.
+---
 
-Uploads a job screenshot or pastes a job description.
+# ⚡ How It Works
 
-If an image is uploaded:
+1️⃣ User logs into the system 🔐  
+2️⃣ Uploads a **job screenshot** or pastes **job description text** 📄  
+3️⃣ If an image is uploaded, **OCR extracts the text** 🔎  
+4️⃣ The system scans the text for **suspicious keywords** ⚠️  
+5️⃣ Based on the analysis, the system predicts:
 
-OCR extracts the text.
+- ✅ **Real Job**
+- ❌ **Fake Job**
 
-The system scans for suspicious keywords like:
+---
 
-registration fee
+# 🚩 Common Fake Job Indicators
 
-urgent hiring
+⚠️ **Registration Fee Required**  
+⚠️ **Immediate Hiring Without Interview**  
+⚠️ **Work From Home & Earn Huge Money**  
+⚠️ **WhatsApp Only Communication**  
+⚠️ **Security Deposit Required**  
+⚠️ **Refundable Training Fees**
 
-no interview
+These indicators are commonly used in **online job scams**.
 
-security deposit
+---
 
-WhatsApp only contact
+# 🚀 Future Improvements
 
-Based on these indicators, the system predicts:
+✨ Integrate **Machine Learning Model**  
+✨ Improve **User Interface Design**  
+✨ Add **Email Verification System**  
+✨ Deploy the application to **Cloud Platform**
 
-Fake Job
+---
 
-Real Job
+# 👨‍💻 Author
 
-Example Fake Indicators
+**Vinod Kumar**  
+🎓 MCA Student  
+🏫 Aurora Deemed to be University
 
-Asking for registration fees
+---
 
-Immediate hiring without interview
+# ⭐ Support
 
-Work from home earn huge money
-
-Contact through WhatsApp only
-
-Security deposit required
-
-Future Improvements
-
-Add Machine Learning model for better accuracy
-
-Add email verification
-
-Deploy the project online
-
-Improve UI design
+If you like this project, please consider giving it a **⭐ Star on GitHub**.
