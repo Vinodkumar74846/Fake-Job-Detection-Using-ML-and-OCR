@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Job Post Authenticator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a44;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #00b7eb;
+        }
+        .login-container {
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"] {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #00b7eb;
+            background-color: #2a3b5a;
+            color: #ffffff;
+        }
+        input[type="submit"] {
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #00b7eb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0099cc;
+        }
+        .error {
+            color: #ff0000;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .signup-link a {
+            color: #00b7eb;
+            text-decoration: none;
+        }
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="login-container">
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <br>
+            <input type="password" name="password" placeholder="Password" required>
+            <br>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">
+            Don’t have an account? <a href="{{ url_for('signup') }}">Sign up here</a>
+        </div>
+    </div>
+</body>
+</html>

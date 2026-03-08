@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up - Job Post Authenticator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a44;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+        }
+        .signup-container {
+            background-color: #2a3b5a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+        }
+        h2 {
+            color: #00b7eb;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="tel"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 16px;
+            border: 1px solid #00b7eb;
+            border-radius: 5px;
+            background-color: #1e2a44;
+            color: #ffffff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00b7eb;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0099cc;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .login-link {
+            margin-top: 15px;
+        }
+        .login-link a {
+            color: #00b7eb;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" pattern="[A-Za-z ]+"
+                   title="Only letters and spaces allowed" required>
+
+            <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" minlength="10" maxlength="10"
+                   title="Phone number must be exactly 10 digits" required>
+
+            <input type="password" name="password" placeholder="Password" required>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="login-link">
+            Already registered? <a href="{{ url_for('login') }}">Login here</a>
+        </div>
+    </div>
+</body>
+</html>

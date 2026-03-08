@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a44;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            position: relative;
+        }
+        h1 {
+            color: #00b7eb;
+        }
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        b {
+            color: #00b7eb;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #00b7eb;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        .button:hover {
+            background-color: #0099cc;
+        }
+        #prediction-result {
+            display: none; /* Initially hidden */
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .real {
+            color: #00ff00; /* Green for real */
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        .fake {
+            color: #ff0000; /* Red for fake */
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        #reasons {
+            display: none; /* Initially hidden */
+            text-align: left;
+            margin: 20px auto;
+            width: 80%;
+            background-color: #2a3b5a;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #00b7eb;
+        }
+        #reasons ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        #reasons h2 {
+            color: #00b7eb;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            padding: 20px 50px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        #report-details {
+            display: none;
+            text-align: left;
+            margin: 20px auto;
+            width: 80%;
+            background-color: #2a3b5a;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #00b7eb;
+        }
+        #report-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        #report-details li {
+            margin: 10px 0;
+        }
+        #report-details a {
+            color: #00b7eb;
+            text-decoration: underline;
+        }
+        #report-details a:hover {
+            color: #0099cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <div class="header">
+        <a href="https://cybercrime.gov.in/" class="button">Contact Us</a>
+        {% if prediction == 'Fake' %}
+            <button id="report-fake-button" class="button" onclick="toggleReportDetails()">Report for Fake</button>
+        {% endif %}
+        <a href="/history" class="button">Prediction History</a>
+        <a href="/logout" class="button">Logout</a>
+    </div>
+    <p><b>Source:</b> {{ source }}</p>
+    <p><b>Processed Text:</b> {{ processed_text }}</p>
+    <button id="show-prediction-button" class="button" onclick="showPrediction()">Show Prediction</button>
+    <p id="prediction-result" class="{{ 'real' if prediction == 'Real' else 'fake' }}">
+        {{ 'Real Job Post' if prediction == 'Real' else 'Fake Job Post' }}
+    </p>
+    {% if prediction == 'Fake' and reasons %}
+        <button id="show-reasons-button" class="button" style="display: none;" onclick="showReasons()">Reason for Fake</button>
+        <div id="reasons">
+            <h2>Reasons for Fake Job Post</h2>
+            <ul>
+            {% for reason in reasons %}
+                <li>{{ reason }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <a href="/upload" class="button" style="position: relative; top: 20px;">Try Another Job Posting</a>
+
+    <div id="report-details">
+        <p>To report a fake job in India, you can send an email to the following official authorities:</p>
+        <ul>
+            <li>🛡️ 1. National Cyber Crime Reporting Portal (Government of India)<br>
+                📧 Email: <a href="mailto:cybercrime.gov.in@gov.in">cybercrime.gov.in@gov.in</a> (for general contact; reporting is better through the portal)<br>
+                🌐 Website to report directly: <a href="https://cybercrime.gov.in/" target="_blank">https://cybercrime.gov.in/</a><br>
+                📌 Category: "Online Job Fraud"</li>
+            <li>🧾 2. Ministry of Labour and Employment (for labor-related frauds)<br>
+                📧 Email: <a href="mailto:labourcomplaints-mole@gov.in">labourcomplaints-mole@gov.in</a><br>
+                🌐 Website: <a href="https://labour.gov.in" target="_blank">https://labour.gov.in</a></li>
+            <li>🏛️ 3. Your Local Police / Cyber Cell<br>
+                You can also file an FIR at the nearest police station or contact the cyber crime cell in your city.</li>
+        </ul>
+        <p>Many states also have their own cyber helplines (e.g., 1930 for cyber fraud reporting in India).</p>
+    </div>
+
+    <script>
+        function showPrediction() {
+            const predictionElement = document.getElementById('prediction-result');
+            predictionElement.style.display = 'block'; // Show the prediction
+            const showPredictionButton = document.getElementById('show-prediction-button');
+            showPredictionButton.style.display = 'none';
+            const showReasonsButton = document.getElementById('show-reasons-button');
+            if (showReasonsButton) {
+                showReasonsButton.style.display = 'inline-block';
+            }
+        }
+        function showReasons() {
+            const reasonsDiv = document.getElementById('reasons');
+            if (reasonsDiv.style.display === 'none') {
+                reasonsDiv.style.display = 'block';
+            } else {
+                reasonsDiv.style.display = 'none';
+            }
+        }
+        function toggleReportDetails() {
+            const reportDetails = document.getElementById('report-details');
+            if (reportDetails.style.display === 'none' || reportDetails.style.display === '') {
+                reportDetails.style.display = 'block';
+            } else {
+                reportDetails.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

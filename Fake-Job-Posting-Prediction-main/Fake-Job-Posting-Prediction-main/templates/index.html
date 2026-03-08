@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Fraud Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Job Post Authenticator</h1>
+            <p class="subtitle">AI-Powered Fraud Detection System</p>
+        </header>
+        <main class="main-content">
+            <form action="/predict" method="post" class="analysis-form">
+                <textarea name="combined_text" placeholder="Paste job description here..." required></textarea>
+                <button type="submit" class="cta-button">Analyze Content</button>
+            </form>
+            {% if prediction %}
+            <div class="result-container">
+                <div class="result-card">
+                    <p class="result-text">{{ prediction }}</p>
+                </div>
+            </div>
+            {% endif %}
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>Legitimate Example</h3>
+                    <textarea id="legit-job" readonly>
+Title: Software Engineer
+Company: Goldman Sachs
+Location: Bengaluru, India
+Description: Develop scalable software, architect low-latency infrastructure, and leverage machine learning to turn data into action.
+Requirements:
+- Bachelor's in Computer Science or related field
+- Strong fundamentals in distributed systems and databases
+- Proficiency in algorithm design and analysis
+- Experience with programming languages and runtime systems
+How to Apply: Visit the Goldman Sachs careers page: https://www.goldmansachs.com/careers/our-firm/engineering
+                    </textarea>
+                    <button class="copy-button">Copy Text</button>
+                </div>
+                <div class="example-card">
+                    <h3>Fraudulent Example</h3>
+                    <textarea id="fraud-job" readonly>
+Title: Junior Developer - Immediate Hiring
+Company: Future AI Solutions
+Location: Remote
+Description: Seeking enthusiastic developers to work on AI projects with international clients. No experience needed.
+Requirements:
+- No experience required; basic Python preferred
+- Must have a laptop with internet access
+How to Apply: Apply via careers@futureaisolutions.com. A refundable ₹4,999 deposit is required for training materials.
+                    </textarea>
+                    <button class="copy-button">Copy Text</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.querySelectorAll('.copy-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const content = e.target.previousElementSibling.value;
+                navigator.clipboard.writeText(content);
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy Text', 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

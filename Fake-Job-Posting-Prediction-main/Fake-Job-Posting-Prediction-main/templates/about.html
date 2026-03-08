@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - Job Post Authenticator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e2a44;
+            color: white;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #00b7eb;
+        }
+        a {
+            color: #00b7eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Job Post Authenticator</h1>
+        <p>
+            Job Post Authenticator** is a web-based application designed to help users identify whether a job posting is real or fake. The system allows users to either upload an image of a job post or paste the job description directly, and it uses Optical Character Recognition (OCR) via Tesseract to extract text from images. The extracted or pasted text is then analyzed using a rule-based approach that scans for suspicious phrases like "Urgent Hiring", "No Experience Needed", "Immediate Hiring", and "Pay to Apply"—all common in fraudulent listings. If any red flags are found, the job post is flagged as fake and reasons are displayed to the user. Built with Python using the Flask framework, this project incorporates HTML and CSS for the frontend and manages user sessions for login, signup, and prediction history. The signup form validates usernames (disallowing numbers), ensures phone numbers are exactly 10 digits, and checks passwords. It also features sample legitimate and fake job examples, a scrolling banner for better user experience, and an "About" section explaining the project. The system can be enhanced further by integrating machine learning models to improve prediction accuracy and report scam jobs to authorities.
+
+        </p>
+        <h2>Technologies Used:</h2>
+        <ul>
+            <li>Python (Flask)</li>
+            <li>Pytesseract (OCR)</li>
+            <li>HTML & CSS</li>
+            <li>NLP for text Extraction</li>
+            <li>Ml for Model Training</li>
+        </ul>
+        <h2>Rule-Based Detection:</h2>
+        <p>
+            It checks for red flags like:
+            <ul>
+                <li>\"Urgent hiring\"</li>
+                <li>\"No experience needed\"</li>
+                <li>\"Pay to apply\"</li>
+            </ul>
+        </p>
+        <p>
+            <a href="/upload">← Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>
